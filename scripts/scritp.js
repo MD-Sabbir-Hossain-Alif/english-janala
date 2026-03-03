@@ -15,6 +15,14 @@ const LoadLevelWord = (id) => {
     
 }
 
+// {
+// "id": 4,
+// "level": 5,
+// "word": "Diligent",
+// "meaning": "পরিশ্রমী",
+// "pronunciation": "ডিলিজেন্ট"
+// }
+
 //* function level Words
 const displayLevelWord = (words) => {
     // console.log(words)
@@ -25,7 +33,15 @@ const displayLevelWord = (words) => {
     words.forEach(word => {
         const wordCardDiv = document.createElement('div')
         wordCardDiv.innerHTML = `
-        <h1> hello</h1>
+        <div class="card bg-white px-5 py-10 shadow-sm text-center space-y-6">
+            <h3 class="text-[2rem] font-bold">${word.word}</h3>
+            <p class="text-xl font-medium">Meaning / Pronounciation</p>
+            <h3 class="font-bangla text-[2rem] font-semibold text-[#000000CC]">"${word.meaning} / ${word.pronunciation}"</h3>
+            <div class="flex justify-between mt-6">
+                <button class="btn btn-info btn-outline"><i class="fa-solid fa-circle-info"></i></button>
+                <button class="btn btn-info btn-outline"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+        </div>
         `
         wordContainer.appendChild(wordCardDiv)
     })
