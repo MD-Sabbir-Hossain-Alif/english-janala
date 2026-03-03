@@ -1,7 +1,18 @@
-// create element function
+//* create element function
 const createElement = (arr) => {
     const htmlElement = arr.map((synonyms) => `<span class="btn btn-soft btn-info border text-[#000000CC] border-[#D7E4EF] text-xl font-normal">${synonyms}</span>`);
     return (htmlElement.join(" "))
+}
+
+//* manage loader
+const manageLoader= (status) => {
+    if (status) {
+        document.getElementById('loader').classList.remove('hidden')
+        document.getElementById('word-conainer').classList.add('hidden')
+    } else {
+        document.getElementById('word-conainer').classList.remove('hidden')
+        document.getElementById('loader').classList.add('hidden')
+    }
 }
 
 //* fetch lessons level data
@@ -20,6 +31,8 @@ const removeActive = () => {
 
 //* function Load Level Word 
 const LoadLevelWord = (id) => {
+    manageLoader(true)
+
     const url = `https://openapi.programming-hero.com/api/level/${id}`
     fetch(url)
         .then(res => res.json())
@@ -101,7 +114,9 @@ const displayLevelWord = (words) => {
                     <p class=" text-gray-500 text-lg">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি!</p>
                     <h3 class="text-[#292524] text-[2.2rem] font-medium">নেক্সট Lesson এ যান।</h3>
                 </div>
-            `
+            `;
+        
+        manageLoader(false)
         return;
     }
 
@@ -128,6 +143,8 @@ const displayLevelWord = (words) => {
         `
         wordContainer.appendChild(wordCardDiv)
     })
+
+    manageLoader(false)
 }
 
 //* fucntion displayLessons  
